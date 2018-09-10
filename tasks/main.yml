@@ -1,0 +1,9 @@
+---
+
+- include_tasks: "{{ ansible_os_family }}.yml"
+
+- import_role:
+    name: t18s.fr_reboot
+  when: >
+    upgrade_completed
+    and upgrade_completed_then_reboot
