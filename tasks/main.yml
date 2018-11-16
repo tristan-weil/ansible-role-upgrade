@@ -6,4 +6,4 @@
     name: t18s.fr_reboot
   when: >
     upgrade_completed
-    and upgrade_completed_then_reboot
+    and upgrade_completed_then_reboot | bool
