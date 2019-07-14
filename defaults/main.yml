@@ -1,3 +1,5 @@
 ---
 
 upgrade_completed_then_reboot: False
+
+upgrade_debian_disable_timers: True

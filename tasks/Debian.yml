@@ -12,3 +12,15 @@
 - name: create upgrade_complete var
   set_fact:
     upgrade_completed: "{{ __upgrade_complete_result.changed }}"
+
+- name: disable unwanted services
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: False
+  when: upgrade_debian_disable_timers
+  loop:
+    - apt-daily.service
+    - apt-daily.timer
+    - apt-daily-upgrade.timer
+    - apt-daily-upgrade.service
