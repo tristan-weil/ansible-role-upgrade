@@ -3,10 +3,10 @@
 - name: upgrade system and packages
   apt:
     upgrade: dist
-    update_cache: yes
+    update_cache: True
     cache_valid_time: 3600
-    purge: yes
-    autoclean: yes
+    purge: True
+    autoclean: True
   register: __upgrade_complete_result
 
 - name: create upgrade_complete var
