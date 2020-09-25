@@ -1,21 +1,19 @@
 ---
 
-- name: upgrade system
+- name: 'upgrade system'
   command: syspatch
   register: __upgrade_syspatch_status
   changed_when: >
-    __upgrade_syspatch_status.stdout != ''
+    __upgrade_syspatch_status.stdout
     and __upgrade_syspatch_status.rc == 0
   failed_when: __upgrade_syspatch_status.rc != 0
-  notify:
-    - upgrade complete
 
-- name: upgrade packages
+- name: 'upgrade packages'  # noqa 403
   openbsd_pkg:
     name: '*'
-    state: latest
+    state: 'latest'
   register: __upgrade_pkg_complete_result
 
-- name: create upgrade_complete var
+- name: 'create upgrade_complete var'
   set_fact:
-    upgrade_completed: "{% if __upgrade_pkg_complete_result.changed or (__upgrade_syspatch_status.stdout != '' and __upgrade_syspatch_status.rc == 0) %}True{% else %}False{% endif %}"
+    upgrade_completed: "{{ __upgrade_pkg_complete_result.changed or (__upgrade_syspatch_status.stdout and __upgrade_syspatch_status.rc == 0) }}"

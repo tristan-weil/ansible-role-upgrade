@@ -2,8 +2,8 @@
 
 - include_tasks: "{{ ansible_facts['os_family'] }}.yml"
 
-- include_role:
-    name: t18s.fr_reboot
+- name: 'reboot'
+  reboot:
   when: >
-    upgrade_completed
+    upgrade_completed | bool
     and upgrade_completed_then_reboot | bool

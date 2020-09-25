@@ -1,6 +1,6 @@
 ---
 
-- name: upgrade system and packages
+- name: 'upgrade system and packages'
   apt:
     upgrade: dist
     update_cache: True
@@ -9,16 +9,18 @@
     autoclean: True
   register: __upgrade_complete_result
 
-- name: create upgrade_complete var
+- name: 'create upgrade_complete var'
   set_fact:
     upgrade_completed: "{{ __upgrade_complete_result.changed }}"
 
-- name: disable unwanted services
+- name: 'disable unwanted services'
   service:
     name: "{{ item }}"
-    state: stopped
+    state: 'stopped'
     enabled: False
-  when: upgrade_debian_disable_timers
+  when: >
+    upgrade_debian_disable_timers | bool
+    and ansible_facts['virtualization_type'] != 'docker'
   loop:
     - apt-daily.service
     - apt-daily.timer
