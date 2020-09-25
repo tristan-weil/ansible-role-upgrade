@@ -8,4 +8,5 @@
     - import_role:
         name: 'ansible-role-upgrade'
       vars:
-        upgrade_completed_then_reboot: ansible_facts['virtualization_type'] != 'docker'
+        upgrade_completed_then_reboot: False
+        upgrade_debian_disable_timers: False

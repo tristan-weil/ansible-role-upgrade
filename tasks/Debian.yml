@@ -20,7 +20,6 @@
     enabled: False
   when: >
     upgrade_debian_disable_timers | bool
-    and ansible_facts['virtualization_type'] != 'docker'
   loop:
     - apt-daily.service
     - apt-daily.timer
