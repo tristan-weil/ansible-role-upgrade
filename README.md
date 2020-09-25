@@ -1,6 +1,6 @@
 # Ansible Role: upgrade
 
-An Ansible Role to upgrade the system and the packages for Debian and OpenBSD.
+An Ansible Role to upgrade the system and the packages.
 
 [![Actions Status](https://github.com/tristan-weil/ansible-role-upgrade/workflows/molecule/badge.svg?branch=master)](https://github.com/tristan-weil/ansible-role-upgrade/actions)
 
